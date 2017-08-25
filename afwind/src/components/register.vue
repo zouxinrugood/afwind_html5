@@ -5,8 +5,8 @@
         <div class="g-form-line">
           <span class="g-form-label choose-role">选择角色</span>
           <div class="g-form-radio">
-            <el-radio class="radio" v-model="radio" label="1">采购商</el-radio>
-            <el-radio class="radio" v-model="radio" label="2">供应商</el-radio>
+            <el-radio class="radio" v-model="selectrole" label="1">采购商</el-radio>
+            <el-radio class="radio" v-model="selectrole" label="2">供应商</el-radio>
           </div>
         </div>
         <div class="g-form-line">
@@ -62,6 +62,11 @@
             </button>
           </span>
         </div>
+        <div class="g-form-line agreeus">
+          <div class="g-form-checkbox">
+            <el-checkbox v-model="checked">同意爱风商城协议</el-checkbox>
+          </div>
+        </div>
         <div class="g-form-line">
           <div class="g-form-btn">
             <a class="button">注册</a>
@@ -80,7 +85,7 @@ export default {
     },
   data() {
     return {
-      radio:'1',
+      selectrole:'1',
       companyname:'',
       creditcode:'',
       username:'',
@@ -90,7 +95,8 @@ export default {
       verify:'',
       errorText:'',
       isShowVerify:false,
-      second:60
+      second:60,
+      checked: true
     }
   },
   watch:{
@@ -245,11 +251,17 @@ export default {
         padding-left 150px
         margin-top 20px
         a
-          padding 20px 30px
+          padding 10px 30px
           border 1px solid #ccc
           cursor pointer
           background #20a0ff
           color white
+    .agreeus
+      float left
+      width 390px
+      text-align center
+      padding 0
+      margin-left 23px
   .g-form-label
     float left
     width 130px

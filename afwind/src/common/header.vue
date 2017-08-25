@@ -5,7 +5,7 @@
           <ul>
             <li>你好游客</li>
             <li><router-link :to="{path: '/register'}">注册</router-link></li>
-            <li><a href="#">登录</a></li>
+            <li><router-link :to="{path:'/login'}">登录</router-link></li>
             <li class="myOrder"><a href="#">追踪我的订单</a></li>
             <li>
               <el-dropdown>
