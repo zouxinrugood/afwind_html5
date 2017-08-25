@@ -4,7 +4,7 @@
         <myHeader></myHeader>
       </div>
       <div class="content">
-        i am content
+        <router-view></router-view>
       </div>
       <div class="footer">
         <myFooter></myFooter>
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import header from '../common/header.vue'
-import footer from '../common/footer.vue'
+import header from '../common/header.vue';
+import footer from '../common/footer.vue';
 
 export default {
   components:{
@@ -25,5 +25,4 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
 </style>
