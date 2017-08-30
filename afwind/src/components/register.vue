@@ -224,55 +224,66 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-.reg-form
-  width 980px
-  margin 0 auto
-  margin-top 100px
-  .g-form
-    width 600px
-    height 600px
-    margin 0 auto
-    overflow hidden
-    margin-left 300px
-    .g-form-line
-      float left
-      padding 15px 0
-      .g-form-input,.g-form-radio
-        display inline-block
-        input
-          height 30px
-          width 200px
-          line-height 30px
-          vertical-align middle
-          padding 0 10px
-          border 1px solid #ccc
-      .g-form-btn
-        padding-left 150px
-        margin-top 20px
-        a
-          padding 10px 30px
-          border 1px solid #ccc
-          cursor pointer
-          background #20a0ff
-          color white
-    .agreeus
-      float left
-      width 390px
-      text-align center
-      padding 0
-      margin-left 23px
-  .g-form-label
-    float left
-    width 130px
-    font-size 16px
-    display inline-block
-    margin-right 20px
-    margin-top 8px
-  .g-form-error,.el-icon-warning
-    color red
-  .choose-role
-    margin-top 0
+<style scoped>
+.reg-form{
+  width: 980px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.g-form{
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  margin-left: 300px;
+  overflow: hidden;
+}
+.g-form-line{
+  float: left;
+  padding: 15px 0;
+}
+.g-form-input,.g-form-radio{
+  display: inline-block;
+}
+.g-form-input input{
+  height: 30px;
+  width: 200px;
+  line-height: 30px;
+  vertical-align: middle;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
+.g-form-btn{
+  padding-left: 150px;
+  margin-top: 20px;
+}
+.g-form-btn a{
+  padding: 10px 30px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #20a0ff;
+  color: white;
+}
+.agreeus{
+  float: left;
+  width: 390px;
+  text-align: center;
+  padding: 0;
+  margin-left: 23px;
+}
+.g-form-label{
+  float: left;
+  width: 130px;
+  font-size: 16px;
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 8px;
+}
+.g-form-error,.el-icon-warning{
+  color: red;
+}
+.choose-role{
+    margin-top: 0px;
+}
 </style>
 
 

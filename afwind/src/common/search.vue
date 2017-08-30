@@ -28,23 +28,25 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped>
   .el-input-group {
-    float left
-    width 600px
-    margin-left 50px
-    margin-top 23px
-    margin-right 50px
+    float: left;
+    width: 600px;
+    margin-left: 50px;
+    margin-top: 23px;
+    margin-right: 50px;
   }
   .item {
     margin-top: 23px;
     margin-right: 40px;
   }
-  .myHeader
-    width 1280px
-    height 120px
-    margin 0 auto
-    overflow hidden
-    a
-      float left
+  .myHeader{
+    width: 1280px;
+    height: 120px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .myHeader a{
+    float: left;
+  }
 </style>

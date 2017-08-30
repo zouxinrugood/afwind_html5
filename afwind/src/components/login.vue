@@ -89,61 +89,74 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  .login-form
-    width 980px
-    margin 0 auto
-    margin-top 100px
-    .g-form
-      width 600px
-      height 600px
-      margin 0 auto
-      overflow hidden
-      margin-left 300px
-      .g-form-line
-        float left
-        padding 15px 0
-        .g-form-input,.g-form-radio
-          display inline-block
-          input
-            height 30px
-            width 200px
-            line-height 30px
-            vertical-align middle
-            padding 0 10px
-            border 1px solid #ccc
-          .verify
-            float left
-            width 100px
-          .verifycode
-            float left
-            img
-              width 100px
-              height 32px
-        .g-form-btn
-          padding-left 118px
-          margin-top 20px
-          a
-            padding 10px 30px
-            border 1px solid #ccc
-            cursor pointer
-            background #20a0ff
-            color white
-      .forgetpwd
-        width 390px
-        text-align left
-        color #7e8c8d
-        margin-left 100px
-        padding 0
-    .g-form-label
-      float left
-      width 80px
-      font-size 16px
-      display inline-block
-      margin-right 20px
-      margin-top 8px
-    .g-form-error,.el-icon-warning
-      color red
-    .choose-role
-      margin-top 0
+<style>
+  .login-form{
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+  .g-form{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    margin-left: 300px;
+    overflow: hidden;
+  }
+  .g-form-line{
+    float: left;
+    padding: 15px 0;
+  }
+  .g-form-input,.g-form-radio{
+    display: inline-block;
+  }
+  .g-form-input input{
+    height: 30px;
+    width: 200px;
+    line-height: 30px;
+    vertical-align: middle;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+  }
+  .verify{
+    float: left;
+    width: 100px;
+  }
+  .verifycode{
+    float: left;
+  }
+  .verifycode img{
+    width: 100px;height: 32px;
+  }
+  .g-form-btn{
+    padding-left: 118px;
+    margin-top: 20px;
+  }
+  .g-form-btn a{
+    padding: 10px 30px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: #20a0ff;
+    color: white;
+  }
+  .forgetpwd{
+    width: 390px;
+    text-align: left;
+    color: #7e8c8d;
+    margin-left: 100px;
+    padding: 0;
+  }
+  .g-form-label{
+    float: left;
+    width: 80px;
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 8px;
+  }
+  .g-form-error,.el-icon-warning{
+    color: red;
+  }
+  .choose-role{
+    margin-top: 0px;
+  }
 </style>

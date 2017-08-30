@@ -18,9 +18,14 @@
           </ul>
         </div>
       </div>
-      <div class="searchMenu">
-        <slideShow :slides="slides"></slideShow>
-        <cateMenu class="cateMenu"></cateMenu>
+      <div class="container">
+        <div class="cateMenu">
+          <cateMenu></cateMenu>
+        </div>
+        <div class="searchMenu">
+          <slideShow :slides="slides"></slideShow>
+        </div>
+        <div class="advertising">各种广告</div>
       </div>
     </div>
 </template>
@@ -57,49 +62,77 @@ import cateMenu from '../components/cateMenu.vue'
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  .nav-detail:nth-child(1){
-    margin-left 150px
+<style>
+  .top-search{
+    width: 1350px;
+    height: 40px;
+    margin: 0 auto;
+    background: red;
+    overflow: hidden;
   }
-  .top-search
-    width 100%
-    height 40px
-    .products-title
-      width 160px
-      height 40px
-      float left
-      margin-left 350px
-      background pink
-      overflow hidden
-      .products-logo
-        float left
-        img
-          width 40px
-          height 40px
-          padding 0 5px
-      p
-        float left
-        line-height 40px
-    .container-nav
-      width 800px
-      height 40px
-      float left
-      .nav-main
-        width 100%
-        height 100%
-        list-style none
-        .nav-detail
-          width 100px
-          height 40px
-          float left
-          line-height 40px
-  .searchMenu
-    position relative
-   .cateMenu
-      position: absolute
-      top 0
-      left 0
-      z-index 10
-      margin-left 350px
+  .products-title{
+    width: 160px;
+    height: 40px;
+    float: left;
+    background: pink;
+    overflow: hidden;
+  }
+  .products-logo{
+    float: left;
+  }
+  .products-logo img{
+    width: 40px;
+    height: 40px;
+    padding: 0 5px;
+  }
+  .products-title p{
+    float: left;
+    line-height: 40px;
+  }
+  .container-nav{
+    width: 800px;
+    height: 40px;
+    float: left;
+  }
+  .nav-main{
+    width: 100%;
+    height: 100%;
+    list-style: none;
+  }
+  .nav-detail{
+    width: 80px;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+  }
+  .container{
+    width: 1350px;
+    height: 500px;
+    margin: 0 auto;
+    background: black;
+    overflow: hidden;
+    position: relative;
+  }
+  .cateMenu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  .searchMenu{
+    width: 1030px;
+    height: 500px;
+    margin-left: 160px;
+    background: darkmagenta;
+  }
+  .advertising{
+    width: 160px;
+    height: 500px;
+    background: green;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 </style>
 

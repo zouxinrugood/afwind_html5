@@ -31,37 +31,50 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  .myNav
-    width 100%
-    background #20a0ff
-    .myNav-content
-      width 980px
-      margin 0 auto
-      height 52px
-      ul
-        list-style none
-        float left
-        li
-          width 100px
-          float left
-          line-height 52px
-          color white
-          text-align center
-          .el-dropdown
-            font-size 16px
-            color white
-            width 100px
-            text-align center
-            .el-dropdown-menu__item
-              text-align center
-          a
-            color white
-            text-decoration none
-        .myOrder
-          margin-left 300px
-  .blank
-    width 200px
-    height 80px
-    margin 0 auto
+<style scoped>
+  .myNav{
+    width: 100%;
+    background: #20a0ff;
+  }
+  .myNav-content{
+    width: 980px;
+    margin: 0 auto;
+    height: 52px;
+  }
+  .myNav-content ul{
+    list-style: none;
+    float: left;
+  }
+  .myNav-content ul li{
+    width: 100px;
+    float: left;
+    line-height: 52px;
+    color: white;
+    text-align: center;
+  }
+  .myNav-content ul li a{
+    color: white;
+  }
+  .el-dropdown{
+    font-size: 16px;
+    color: white;
+    width: 100px;
+    text-align: center;
+  }
+  .el-dropdown-menu__item{
+    text-align: center;
+  }
+  .el-dropdown-menu__item a{
+    color: white;
+    text-decoration: none;
+  }
+  .myOrder{
+    margin-left: 300px;
+  }
+  .blank{
+    width: 200px;
+    height: 80px;
+    margin: 0 auto;
+  }
+
 </style>

@@ -19,6 +19,7 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
   .el-carousel__container{
+    width 1030px
     height 500px
   }
   .el-carousel__item img{

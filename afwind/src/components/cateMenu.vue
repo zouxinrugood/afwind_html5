@@ -63,24 +63,25 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped>
 .first,.second{
-  width 160px
-  height 500px
-  float left
+  width: 160px;
+  height: 500px;
+  float: left;
 }
 .first .el-cascader-menus{
-    margin 0
-    height:498px
-    border none
+    margin: 0;
+    height:498px;
+    border: none;
 }
 .first .el-cascader-menus .el-cascader-menu{
-  margin 0
+  margin: 0;
+  background: orange;
 }
 .second .el-cascader-menus{
-  margin 0
-  height 498px
-  border none
+  margin: 0;
+  height: 498px;
+  border: none;
 }
 .second .el-cascader-menu{
   width: 500px;
