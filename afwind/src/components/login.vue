@@ -18,7 +18,7 @@
       <div class="g-form-line">
         <span class="g-form-label">验证码：</span>
         <div class="g-form-input">
-          <input class="verify" type="password" v-model="pwd" placeholder="验证码">
+          <input class="verify" type="password" v-model="verify" placeholder="验证码">
           <div class="verifycode">
             <img @click="toggleVerify" src="../assets/verify.png">
           </div>
@@ -29,7 +29,7 @@
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
-          <a class="button">登录</a>
+          <a @click="login" class="button">登录</a>
           <router-link :to="{path:'/'}">取消</router-link>
         </div>
       </div>
@@ -42,12 +42,27 @@ export default {
   data() {
     return {
       username:'',
-      pwd:''
+      pwd:'',
+      verify:''
     }
   },
   methods:{
     toggleVerify() {
       alert('切换验证码')
+    },
+    login() {
+      let reqParams = {
+        userName:this.username,
+        userPassword:this.pwd
+      }
+      this.$axios.post("192.168.1.110:8025/commerce-web/login",reqParams)
+        .then((res) => {
+          console.log(res.success);
+        }).catch((res) => {
+          console.log(res.error)
+      })
+      console.log(this.username);
+      console.log(this.pwd);
     }
   },
   computed:{
@@ -89,17 +104,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .login-form{
     width: 980px;
     margin: 0 auto;
     margin-top: 100px;
   }
   .g-form{
-    width: 600px;
+    width: 670px;
     height: 600px;
     margin: 0 auto;
-    margin-left: 300px;
+    margin-left: 240px;
     overflow: hidden;
   }
   .g-form-line{

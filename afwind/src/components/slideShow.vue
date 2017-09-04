@@ -17,14 +17,14 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style>
   .el-carousel__container{
-    width 1030px
-    height 500px
+    width: 1030px;
+    height: 500px;
   }
   .el-carousel__item img{
-    width 100%
-    height 100%
+    width: 100%;
+    height: 100%;
   }
 
 </style>

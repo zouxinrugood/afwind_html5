@@ -58,7 +58,7 @@
           </div>
           <span class="g-form-getverify">
             <button @click="getVerify" type="button">
-              <span v-show="isShowVerify">{{ second }}后可重新获取验证码</span><span v-show="!isShowVerify">获取验证码</span>
+              <span v-show="isShowVerify">{{ second }}后可重新获取验证码</span><span @click="getTelCode" v-show="!isShowVerify">获取验证码</span>
             </button>
           </span>
         </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="g-form-line">
           <div class="g-form-btn">
-            <a class="button">注册</a>
+            <a class="button" @click="reg">注册</a>
             <router-link :to="{path:'/'}">取消</router-link>
           </div>
         </div>
@@ -100,11 +100,40 @@ export default {
     }
   },
   watch:{
-    radio(){
-      console.log(this.radio)
+    selectrole(){
+      //console.log(this.selectrole)
     }
   },
   methods:{
+      getTelCode(){
+        this.$axios.get('/tostortmessage.ajax',{
+          params:{
+            mobile:this.tel
+          }
+        }).then((res) => {
+          console.log(res.data.data)
+        }).catch((res) => {
+          console.log("请求失败")
+        })
+      },
+      reg(){
+        let reqParams = {
+          typei:this.selectrole,
+          enterpriseName:this.companyname,
+          creditCode:this.creditcode,
+          userName:this.username,
+          userPassword:this.pwd,
+          mobile:this.tel,
+          validateCode:this.verify
+        }
+//        console.log()
+        this.$axios.post('/saveregist.ajax',JSON.stringify(reqParams))
+          .then((res) => {
+            console.log(res)
+          }).catch(() => {
+            console.log("请求失败")
+        })
+      },
     getVerify() {
       this.isShowVerify = true;
       this.inv = setInterval(() => {

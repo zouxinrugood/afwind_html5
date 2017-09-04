@@ -5,6 +5,9 @@ import Layout from './components/layout.vue'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import axios from 'axios'
+
+Vue.prototype.$axios=axios;
 
 Vue.use(ElementUI)
 
