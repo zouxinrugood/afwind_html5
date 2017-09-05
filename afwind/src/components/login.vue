@@ -111,10 +111,10 @@ export default {
     margin-top: 100px;
   }
   .g-form{
-    width: 670px;
+    width: 600px;
     height: 600px;
     margin: 0 auto;
-    margin-left: 240px;
+    margin-left: 300px;
     overflow: hidden;
   }
   .g-form-line{
