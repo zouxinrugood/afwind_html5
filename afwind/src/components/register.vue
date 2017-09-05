@@ -390,7 +390,7 @@ export default {
     },
     verifyErr() {
       let errorText,status;
-      if (!/\d{4}/.test(this.verify)){
+      if (!/[a-zA-Z0-9]{4}/.test(this.verify)){
         status = false
       }else{
         status = true
