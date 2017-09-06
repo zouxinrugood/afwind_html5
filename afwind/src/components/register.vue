@@ -175,9 +175,9 @@ export default {
     },
     creditcodeErr() {
       let errorText,status
-      if (!/^\d{16}$/.test(this.creditcode)){
+      if (!/^\d{18}$/.test(this.creditcode)){
         status = false;
-        errorText = '您输入的公司信用代码不足或超过16位';
+        errorText = '您输入的公司信用代码不足或超过18位';
       }else{
         status = true;
         errorText = '';
