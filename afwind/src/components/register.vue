@@ -124,12 +124,14 @@ export default {
       reg(){
         let reqParams = {
           typei:this.selectrole,
-          enterpriseName:this.companyname,
-          creditCode:this.creditcode,
           userName:this.username,
           userPassword:this.pwd,
           mobile:this.tel,
-          validateCode:this.verify
+          validateCode:this.verify,
+          afwindEnterprise:{
+            enterpriseName:this.companyname,
+            creditCode:this.creditcode
+          }
         }
         console.log(reqParams)
         this.$axios.post('/saveregist.ajax',reqParams)
