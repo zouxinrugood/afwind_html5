@@ -57,7 +57,7 @@
           </div>
           <span class="g-form-getverify">
             <button :disabled="getcodedisable" @click="getVerify" type="button">
-              <span v-show="isShowVerify">{{ second }}后可重新获取验证码</span><span v-show="!isShowVerify">获取验证码</span>
+              <span v-show="isShowVerify">{{ second }}后可重新获取验证码</span><span @click="getTelCode" v-show="!isShowVerify">获取验证码</span>
             </button>
           </span>
         </div>
