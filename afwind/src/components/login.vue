@@ -20,7 +20,7 @@
         <div class="g-form-input">
           <input class="verify" type="password" v-model="verify" placeholder="验证码">
           <div class="verifycode">
-            <img @click="toggleVerify" src="../assets/verify.png">
+            <img ref="verifyimg" @click="toggleVerify" :src="verifysrc"/>
           </div>
         </div>
       </div>
@@ -43,12 +43,18 @@ export default {
     return {
       username:'',
       pwd:'',
-      verify:''
+      verify:'',
+      verifyurl:'http://192.168.1.100:8082/commerce-web',
+      verifysrc:''
     }
+  },
+  mounted(){
+    this.verifysrc = this.verifyurl + '/xuan/verifyCode.ajax'
   },
   methods:{
     toggleVerify() {
-      alert('切换验证码')
+      let time = new Date().getTime();
+      this.verifysrc = this.verifyurl+'/xuan/verifyCode.ajax?useful='+time
     },
     login() {
       let reqParams = {

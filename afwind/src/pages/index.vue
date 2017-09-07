@@ -1,6 +1,7 @@
 <template>
     <div>
       <Search></Search>
+
       <div class="top-search">
         <div class="products-title">
           <div class="products-logo">
@@ -38,6 +39,7 @@
         <listMenu :productsList="allProducts"></listMenu>
       </div>
       <ourPartner :ourPartner="partner"></ourPartner>
+
     </div>
 </template>
 

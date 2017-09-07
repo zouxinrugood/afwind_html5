@@ -5,7 +5,7 @@
     </router-link>
     <div>
       <el-input placeholder="请输入产品名称 品牌 型号" v-model="product">
-        <el-button slot="append" icon="search"></el-button>
+        <el-button @click="sousuo" slot="append"><router-link :to="{path: '/goods'}">搜索</router-link></el-button>
       </el-input>
     </div>
     <el-badge :value="12" class="item">
@@ -23,6 +23,11 @@ export default {
     return {
       product: '',
       select: ''
+    }
+  },
+  methods:{
+    sousuo(){
+
     }
   }
 }
