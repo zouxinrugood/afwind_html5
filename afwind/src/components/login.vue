@@ -59,7 +59,8 @@ export default {
     login() {
       let reqParams = {
         userName:this.username,
-        userPassword:this.pwd
+        userPassword:this.pwd,
+        validateCode:this.verify
       }
       this.$axios.post("192.168.1.110:8025/commerce-web/login",reqParams)
         .then((res) => {
@@ -67,8 +68,6 @@ export default {
         }).catch((res) => {
           console.log(res.error)
       })
-      console.log(this.username);
-      console.log(this.pwd);
     }
   },
   computed:{

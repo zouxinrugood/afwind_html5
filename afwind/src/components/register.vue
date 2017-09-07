@@ -95,31 +95,38 @@ export default {
       second:60,
       getcodedisable:false,
       regdisable:false,
-      dialogVisible: false
+      dialogVisible: false,
     }
   },
-  watch:{
-    selectrole(){
-
-    },
-  },
+  watch:{},
+  beforeCreate(){},
+  created(){},
   mounted(){
-
+    this.$axios.get('/countenterprisename.ajax',{
+      params:{
+        enterpriseName:'王华楠不是傻逼'
+      }
+    })
+      .then((res) => {
+        console.log(res)
+      }).catch((res) => {
+      console.log(res)
+    });
   },
   methods:{
     editstatus(){
       this.regdisable = !this.regdisable
     },
       getTelCode(){
-//        this.$axios.get('/tostortmessage.ajax',{
-//          params:{
-//            mobile:this.tel
-//          }
-//        }).then((res) => {
-//          console.log(res.data.data)
-//        }).catch((res) => {
-//          console.log("请求失败")
-//        })
+        this.$axios.get('/tostortmessage.ajax',{
+          params:{
+            mobile:this.tel
+          }
+        }).then((res) => {
+          console.log(res.data.data)
+        }).catch((res) => {
+          console.log("请求失败")
+        })
       },
       reg(){
         let reqParams = {
