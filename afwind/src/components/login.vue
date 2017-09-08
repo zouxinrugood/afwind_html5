@@ -62,11 +62,11 @@ export default {
         userPassword:this.pwd,
         validateCode:this.verify
       }
-      this.$axios.post("192.168.1.110:8025/commerce-web/login",reqParams)
+      this.$axios.post("/login.ajax",reqParams)
         .then((res) => {
-          console.log(res.success);
+          console.log(res);
         }).catch((res) => {
-          console.log(res.error)
+          console.log('请求失败')
       })
     }
   },

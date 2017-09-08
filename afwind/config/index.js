@@ -35,6 +35,13 @@ module.exports = {
           '^/saveregist.ajax':'/saveregist.ajax'
         }
       },
+      '/login.ajax':{
+        target:'http://192.168.1.100:8082/commerce-web',
+        changeOrigin: true,
+        pathRewrite:{
+          '^login.ajax':'login.ajax'
+        }
+      },
       '/tostortmessage.ajax':{
         target:'http://192.168.1.100:8082/commerce-web/regist',
         changeOrigin: true,
