@@ -18,7 +18,7 @@
       <div class="g-form-line">
         <span class="g-form-label">验证码：</span>
         <div class="g-form-input">
-          <input class="verify" type="password" v-model="verify" placeholder="验证码">
+          <input class="verify" type="type" v-model="verify" placeholder="验证码">
           <div class="verifycode">
             <img ref="verifyimg" @click="toggleVerify" :src="verifysrc"/>
           </div>
