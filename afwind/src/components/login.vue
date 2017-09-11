@@ -48,8 +48,10 @@ export default {
       verifysrc:''
     }
   },
-  mounted(){
+  created(){
     this.verifysrc = this.verifyurl + '/xuan/verifyCode.ajax'
+  },
+  mounted(){
   },
   methods:{
     toggleVerify() {

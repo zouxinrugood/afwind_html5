@@ -4,6 +4,7 @@ import IndexPage from '../pages/index.vue'
 import Register from '../components/register.vue'
 import Login from '../components/login.vue'
 import goods from '../pages/goods.vue'
+import goodsDetails from '../pages/gooddetails.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
     {
       path:'/goods',
       component:goods
+    },
+    {
+      path:'/goodsDetails',
+      component:goodsDetails
     }
   ]
 })

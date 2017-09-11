@@ -11,28 +11,28 @@
         <div class="g-form-line">
           <span class="g-form-label">公司名称</span>
           <div class="g-form-input">
-            <input type="text" v-model="companyname" placeholder="请输入公司名称">
+            <input @blur="comNameCheck" type="text" v-model="companyname" placeholder="请输入公司名称">
           </div>
-          <span class="g-form-error"><i v-show="companyNameErr.errorText" class="el-icon-warning"></i>{{ companyNameErr.errorText }}</span>
+          <span class="g-form-error"><i v-show="checkComName" class="el-icon-warning"></i>{{ checkComName }}</span>
         </div>
         <div class="g-form-line">
           <span class="g-form-label">统一社会信用代码</span>
           <div class="g-form-input">
-            <input type="text" v-model="creditcode" placeholder="请输入统一社会信用代码">
+            <input @blur="creCodeCheck" type="text" v-model="creditcode" placeholder="请输入统一社会信用代码">
           </div>
-          <span class="g-form-error"><i v-show="creditcodeErr.errorText" class="el-icon-warning"></i>{{ creditcodeErr.errorText }}</span>
+          <span class="g-form-error"><i v-show="checkCreCode" class="el-icon-warning"></i>{{ checkCreCode }}</span>
         </div>
         <div class="g-form-line">
           <span class="g-form-label">用户名</span>
           <div class="g-form-input">
-            <input type="text" v-model="username" placeholder="请输入用户名">
+            <input @blur="usernameCheck" type="text" v-model="username" placeholder="请输入用户名">
           </div>
-          <span class="g-form-error"><i v-show="usernameErr.errorText" class="el-icon-warning"></i>{{ usernameErr.errorText }}</span>
+          <span class="g-form-error"><i v-show="checkUsername" class="el-icon-warning"></i>{{ checkUsername }}</span>
         </div>
         <div class="g-form-line">
           <span class="g-form-label">密码</span>
           <div class="g-form-input">
-            <input type="password" v-model="pwd" placeholder="请输入密码">
+            <input @blur="pwdCheck" type="password" v-model="pwd" placeholder="请输入密码">
           </div>
           <span class="g-form-error"><i v-show="pwdErr.errorText" class="el-icon-warning"></i>{{ pwdErr.errorText }}</span>
         </div>
@@ -46,9 +46,9 @@
         <div class="g-form-line">
           <span class="g-form-label">手机号</span>
           <div class="g-form-input">
-            <input type="text" v-model="tel" placeholder="请输入手机号">
+            <input @blur="telCheck" type="text" v-model="tel" placeholder="请输入手机号">
           </div>
-          <span class="g-form-error"><i v-show="telErr.errorText" class="el-icon-warning"></i>{{ telErr.errorText }}</span>
+          <span class="g-form-error"><i v-show="checkTel" class="el-icon-warning"></i>{{ checkTel }}</span>
         </div>
         <div class="g-form-line">
           <span class="g-form-label telverify">手机验证码</span>
@@ -66,7 +66,8 @@
         </div>
         <div class="g-form-line">
           <div class="g-form-btn">
-            <el-button class="marginR" :disabled="companyNameErr.status&&creditcodeErr.status&&usernameErr.status&&pwdErr.status&&confirmpwdErr.status&&telErr.status&&verifyErr.status&&regdisable===false?false:true" type="primary" @click="reg">注册</el-button>
+            <!--<el-button class="marginR" :disabled="companyNameErr.status&&creditcodeErr.status&&usernameErr.status&&pwdErr.status&&confirmpwdErr.status&&telErr.status&&verifyErr.status&&regdisable===false?false:true" type="primary" @click="reg">注册</el-button>-->
+            <el-button class="marginR" :disabled="comNameCheckStatus===false&&creCodeCheckStatus===false&&usernameCheckStatus===false&&checkTelStatus===false&&regdisable===false?false:true" type="primary" @click="reg">注册</el-button>
             <router-link :to="{path:'/'}"><el-button class="cancelreg" type="primary">取消</el-button></router-link>
           </div>
         </div>
@@ -90,30 +91,162 @@ export default {
       confirmpwd:'',
       tel:'',
       verify:'',
-      errorText:'',
       isShowVerify:false,
       second:60,
       getcodedisable:false,
       regdisable:false,
       dialogVisible: false,
+
+      checkComName:'',
+      checkCreCode:'',
+      checkUsername:'',
+      checkPwd:'',
+      checkTel:'',
+      comNameCheckStatus:true,
+      creCodeCheckStatus:true,
+      usernameCheckStatus:true,
+      checkPwdStatus:true,
+      checkconfirmPwdStatus:true,
+      checkTelStatus:true,
+      checkVerifyStatus:true,
+
+
     }
   },
   watch:{},
-  beforeCreate(){},
-  created(){},
-  mounted(){
-    this.$axios.get('/countenterprisename.ajax',{
-      params:{
-        enterpriseName:'王华楠不是傻逼'
-      }
-    })
-      .then((res) => {
-        console.log(res)
-      }).catch((res) => {
-      console.log(res)
-    });
-  },
+  mounted(){},
   methods:{
+    comNameCheck(){
+      this.$axios.get('/countenterprisename.ajax',{
+        params:{
+          enterpriseName:this.companyname
+        }
+      }).then((res) => {
+        let status;
+        if (!res.data.data){
+          status = false;
+          this.checkComName = "此公司名已被注册"
+          this.comNameCheckStatus = true
+        }
+        if (!this.companyname){
+          status = false;
+          this.checkComName = "请输入公司名称"
+          this.comNameCheckStatus = true
+        }
+        if (res.data.data&&this.companyname){
+          status = true;
+          this.checkComName = "";
+          this.comNameCheckStatus = false
+        }else{
+          this.comNameCheckStatus = true
+        }
+
+        console.log(this.comNameCheckStatus)
+      })
+    },
+    creCodeCheck(){
+      this.$axios.get('/countcreditcode.ajax',{
+        params:{
+          creditCode:this.creditcode
+        }
+      }).then((res) => {
+        let status;
+        if (!res.data.data){
+          status = false;
+          this.checkCreCode = "此公司信用代码已被注册"
+          this.creCodeCheckStatus = true
+        }
+        if (!/^\d{18}$/.test(this.creditcode)){
+          status = false;
+          this.checkCreCode = "您输入的公司信用代码不足或超过18位"
+          this.comNameCheckStatus = true
+        }
+        if (res.data.data&&/^\d{18}$/.test(this.creditcode)){
+          status = true;
+          this.checkCreCode = "";
+          this.creCodeCheckStatus = false
+        }else{
+          this.creCodeCheckStatus = true
+        }
+
+        console.log(this.creCodeCheckStatus)
+      })
+    },
+    usernameCheck(){
+      this.$axios.get('/countusename.ajax',{
+        params:{
+          userName:this.username
+        }
+      }).then((res) => {
+        console.log(res.data.data)
+        let status;
+        if (!res.data.data){
+          status = false;
+          this.checkUsername = "此用户名已被注册"
+          this.usernameCheckStatus = true
+        }
+        if (!/^[a-zA-z][a-zA-Z0-9_]{5,11}$/.test(this.username)){
+          status = false;
+          this.checkUsername = "您输入的用户名格式不正确"
+          this.usernameCheckStatus = true
+        }
+        if (res.data.data&&/^[a-zA-z][a-zA-Z0-9_]{5,11}$/.test(this.username)){
+          status = true;
+          this.checkUsername = "";
+          this.usernameCheckStatus = false
+        }else{
+          this.usernameCheckStatus = true
+        }
+
+        console.log(this.usernameCheckStatus)
+      })
+    },
+    pwdCheck(){
+      let status
+      if (!/^\w{6,12}$/g.test(this.pwd)){
+        status = false;
+        this.checkPwd = '请至少输入六位密码';
+        this.checkPwdStatus = true;
+      }
+      if (/^\w{6,12}$/g.test(this.pwd)){
+        status = true;
+        this.checkPwd = '';
+        this.checkPwdStatus = false;
+      }else{
+        this.checkPwdStatus = true;
+      }
+
+      console.log(this.checkPwdStatus)
+    },
+    telCheck(){
+      this.$axios.get('/countmobile.ajax',{
+        params:{
+          mobile:this.tel
+        }
+      }).then((res) => {
+        console.log(res.data.data)
+        let status;
+        if (!res.data.data){
+          status = false;
+          this.checkTel = "此手机号码已被注册"
+          this.checkTelStatus = true
+        }
+        if (!/^1[34578]\d{9}$/.test(this.tel)){
+          status = false;
+          this.checkTel = "请输入正确的手机号码"
+          this.checkTelStatus = true
+        }
+        if (res.data.data&&/^1[34578]\d{9}$/.test(this.tel)){
+          status = true;
+          this.checkTel = "";
+          this.checkTelStatus = false
+        }else{
+          this.checkTelStatus = true
+        }
+
+        console.log(this.checkTelStatus)
+      })
+    },
     editstatus(){
       this.regdisable = !this.regdisable
     },
@@ -163,57 +296,6 @@ export default {
     }
   },
   computed:{
-    companyNameErr() {
-      let errorText,status
-      if (!this.companyname){
-        status = false;
-        errorText = '您没有输入公司名称';
-      }else{
-        status = true;
-        errorText = '';
-      }
-      if (!this.companyFlag){
-        errorText = '';
-        this.companyFlag = true;
-      }
-      return {
-        status,errorText
-      }
-    },
-    creditcodeErr() {
-      let errorText,status
-      if (!/^\d{18}$/.test(this.creditcode)){
-        status = false;
-        errorText = '您输入的公司信用代码不足或超过18位';
-      }else{
-        status = true;
-        errorText = '';
-      }
-      if (!this.creditcodeFlag){
-        errorText = '';
-        this.creditcodeFlag = true;
-      }
-      return {
-        status,errorText
-      }
-    },
-    usernameErr() {
-      let errorText,status
-      if (!/^[a-zA-z][a-zA-Z0-9_]{5,11}$/.test(this.username)) {
-        status = false;
-        errorText = '您输入的用户名格式不正确';
-      }else{
-        status = true;
-        errorText = '';
-      }
-      if (!this.usernameFlag){
-        errorText = '';
-        this.usernameFlag = true;
-      }
-      return {
-        status,errorText
-      }
-    },
     pwdErr() {
       let errorText,status
       if (!/^\w{6,12}$/g.test(this.pwd)) {
@@ -243,23 +325,6 @@ export default {
       if (!this.confirmpwdFlag) {
         errorText = '';
         this.confirmpwdFlag = true;
-      }
-      return {
-        status,errorText
-      }
-    },
-    telErr() {
-      let errorText,status;
-      if (!/^1[34578]\d{9}$/.test(this.tel)) {
-        status = false;
-        errorText = '请输入正确的手机号';
-      }else{
-        status = true;
-        errorText = '';
-      }
-      if (!this.telFlag) {
-        errorText = '';
-        this.telFlag = true;
       }
       return {
         status,errorText

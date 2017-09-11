@@ -1,5 +1,5 @@
 <template>
-    <div class="list-menu">
+    <div @click="enterGoodsDetails" class="list-menu">
       <div class="list-container" v-for="item in productsList">
         <a href="#">
           <img :src="item.src">
@@ -20,6 +20,11 @@ export default {
     productsList:{
       type:Array,
       default:[]
+    }
+  },
+  methods:{
+    enterGoodsDetails(){
+      this.$router.push('goodsDetails')
     }
   }
 }
