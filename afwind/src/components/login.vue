@@ -44,19 +44,19 @@ export default {
       username:'',
       pwd:'',
       verify:'',
-      verifyurl:'http://192.168.1.100:8082/commerce-web',
-      verifysrc:''
+      verifysrc:'',
+      vipname:''
     }
   },
   created(){
-    this.verifysrc = this.verifyurl + '/xuan/verifyCode.ajax'
+    this.verifysrc = '/xuan/verifyCode.ajax'
   },
   mounted(){
   },
   methods:{
     toggleVerify() {
       let time = new Date().getTime();
-      this.verifysrc = this.verifyurl+'/xuan/verifyCode.ajax?useful='+time
+      this.verifysrc = '/xuan/verifyCode.ajax?useful='+time
     },
     login() {
       let reqParams = {
@@ -66,9 +66,14 @@ export default {
       }
       this.$axios.post("/login.ajax",reqParams)
         .then((res) => {
-          console.log(res);
+        console.log(res)
+//          console.log(JSON.parse(res.data.data))
+//          console.log(JSON.parse(res.data.data).userName)
+          this.vipname = JSON.parse(res.data.data).userName
+          sessionStorage.setItem("vipname",this.vipname)
+          this.$router.push('/')
         }).catch((res) => {
-          console.log('请求失败')
+          console.log(res)
       })
     }
   },

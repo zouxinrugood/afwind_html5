@@ -34,14 +34,14 @@
           <div class="g-form-input">
             <input @blur="pwdCheck" type="password" v-model="pwd" placeholder="请输入密码">
           </div>
-          <span class="g-form-error"><i v-show="pwdErr.errorText" class="el-icon-warning"></i>{{ pwdErr.errorText }}</span>
+          <span class="g-form-error"><i v-show="checkPwd" class="el-icon-warning"></i>{{ checkPwd }}</span>
         </div>
         <div class="g-form-line">
           <span class="g-form-label">确认密码</span>
           <div class="g-form-input">
-            <input type="password" v-model="confirmpwd" placeholder="请确认密码">
+            <input @blur="conPwdCheck" type="password" v-model="confirmpwd" placeholder="请确认密码">
           </div>
-          <span class="g-form-error"><i v-show="confirmpwdErr.errorText" class="el-icon-warning"></i>{{ confirmpwdErr.errorText }}</span>
+          <span class="g-form-error"><i v-show="checkConPwd" class="el-icon-warning"></i>{{ checkConPwd }}</span>
         </div>
         <div class="g-form-line">
           <span class="g-form-label">手机号</span>
@@ -53,7 +53,7 @@
         <div class="g-form-line">
           <span class="g-form-label telverify">手机验证码</span>
           <div class="g-form-input">
-            <input type="text" v-model="verify" placeholder="请输入手机验证码">
+            <input @blur="verifyCheck" type="text" v-model="verify" placeholder="请输入手机验证码">
           </div>
           <span class="g-form-getverify">
             <button :disabled="getcodedisable" @click="getVerify" type="button">
@@ -67,8 +67,9 @@
         <div class="g-form-line">
           <div class="g-form-btn">
             <!--<el-button class="marginR" :disabled="companyNameErr.status&&creditcodeErr.status&&usernameErr.status&&pwdErr.status&&confirmpwdErr.status&&telErr.status&&verifyErr.status&&regdisable===false?false:true" type="primary" @click="reg">注册</el-button>-->
-            <el-button class="marginR" :disabled="comNameCheckStatus===false&&creCodeCheckStatus===false&&usernameCheckStatus===false&&checkTelStatus===false&&regdisable===false?false:true" type="primary" @click="reg">注册</el-button>
+            <el-button class="marginR" :disabled="comNameCheckStatus===false&&creCodeCheckStatus===false&&usernameCheckStatus===false&&checkTelStatus===false&&checkPwdStatus===false&&checkconfirmPwdStatus===false&&checkVerifyStatus===false&&regdisable===false?false:true" type="primary" @click="reg">注册</el-button>
             <router-link :to="{path:'/'}"><el-button class="cancelreg" type="primary">取消</el-button></router-link>
+            <button type="button" @click="test">测试</button>
           </div>
         </div>
       </div>
@@ -96,12 +97,13 @@ export default {
       getcodedisable:false,
       regdisable:false,
       dialogVisible: false,
-
       checkComName:'',
       checkCreCode:'',
       checkUsername:'',
       checkPwd:'',
+      checkConPwd:'',
       checkTel:'',
+      checkVerify:'',
       comNameCheckStatus:true,
       creCodeCheckStatus:true,
       usernameCheckStatus:true,
@@ -109,13 +111,14 @@ export default {
       checkconfirmPwdStatus:true,
       checkTelStatus:true,
       checkVerifyStatus:true,
-
-
     }
   },
   watch:{},
   mounted(){},
   methods:{
+    test(){
+      this.$router.push('companyInfo')
+    },
     comNameCheck(){
       this.$axios.get('/countenterprisename.ajax',{
         params:{
@@ -178,7 +181,6 @@ export default {
           userName:this.username
         }
       }).then((res) => {
-        console.log(res.data.data)
         let status;
         if (!res.data.data){
           status = false;
@@ -218,13 +220,24 @@ export default {
 
       console.log(this.checkPwdStatus)
     },
+    conPwdCheck(){
+      let status
+      if (this.pwd !== this.confirmpwd){
+        status = false;
+        this.checkConPwd = '密码与上述密码不符';
+        this.checkconfirmPwdStatus = true;
+      }else{
+        status = true;
+        this.checkConPwd = '';
+        this.checkconfirmPwdStatus = false;
+      }
+    },
     telCheck(){
       this.$axios.get('/countmobile.ajax',{
         params:{
           mobile:this.tel
         }
       }).then((res) => {
-        console.log(res.data.data)
         let status;
         if (!res.data.data){
           status = false;
@@ -246,6 +259,19 @@ export default {
 
         console.log(this.checkTelStatus)
       })
+    },
+    verifyCheck(){
+      let status;
+      if (!/[a-zA-Z0-9]{4}/.test(this.verify)){
+        status = false;
+        this.checkVerifyStatus = true;
+      }
+      if (/[a-zA-Z0-9]{4}/.test(this.verify)){
+        status = true;
+        this.checkVerifyStatus = false;
+      }else{
+        this.checkVerifyStatus = true;
+      }
     },
     editstatus(){
       this.regdisable = !this.regdisable
@@ -296,40 +322,6 @@ export default {
     }
   },
   computed:{
-    pwdErr() {
-      let errorText,status
-      if (!/^\w{6,12}$/g.test(this.pwd)) {
-        status = false;
-        errorText = '请至少输入六位密码';
-      }else{
-        status = true;
-        errorText = '';
-      }
-      if (!this.pwdFlag) {
-        errorText = '';
-        this.pwdFlag = true
-      }
-      return {
-        status,errorText
-      }
-    },
-    confirmpwdErr() {
-      let errorText,status
-      if (this.pwd !== this.confirmpwd) {
-        status = false;
-        errorText = '密码与上述密码不符';
-      }else{
-        status = true;
-        errorText = '';
-      }
-      if (!this.confirmpwdFlag) {
-        errorText = '';
-        this.confirmpwdFlag = true;
-      }
-      return {
-        status,errorText
-      }
-    },
     verifyErr() {
       let errorText,status;
       if (!/[a-zA-Z0-9]{4}/.test(this.verify)){

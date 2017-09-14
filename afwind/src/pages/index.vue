@@ -22,7 +22,6 @@
         <listMenu :productsList="allProducts"></listMenu>
       </div>
       <ourPartner :ourPartner="partner"></ourPartner>
-
     </div>
 </template>
 

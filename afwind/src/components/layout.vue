@@ -23,6 +23,7 @@ export default {
   },
   data() {
     return {
+      vipname:'',
       footerInfo:[
         {
           title:"帮助指导",
@@ -60,6 +61,8 @@ export default {
         }
       ]
     }
+  },
+  methods:{
   }
 }
 </script>
